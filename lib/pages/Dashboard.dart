@@ -18,7 +18,7 @@ class _DashboardState extends State<Dashboard> {
         colors: Colors.red),
     Menu(
         title: "Data Kelas",
-        url: "/kelas",
+        url: "/dashboard",
         icon: Icons.book,
         colors: Colors.blue),
     Menu(

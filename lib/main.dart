@@ -170,12 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         SizedBox(height: 20),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Dashboard(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/dashboard');
                           },
                           child: Container(
                             height: 50,
