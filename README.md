@@ -3,6 +3,7 @@
 A new Flutter project.
 
 ## Getting Started
+![Screenshot Aplikasi](public/Screen%20Shot%202024-02-08%20at%2023.51.53.png)
 
 This project is a starting point for a Flutter application.
 
