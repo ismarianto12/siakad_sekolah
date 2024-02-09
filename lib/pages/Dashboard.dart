@@ -1,3 +1,5 @@
+import 'package:absensi_siswa/pages/Profile.dart';
+import 'package:absensi_siswa/pages/Searh.dart';
 import 'package:flutter/material.dart';
 import 'package:absensi_siswa/models/Menu.dart';
 import 'package:flutter/rendering.dart';
@@ -124,31 +126,37 @@ class _DashboardState extends State<Dashboard> {
                 //   ),
                 // ),
 
-                Center(
-                  child: Container(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.90,
-                        height: MediaQuery.of(context).size.width * 0.10,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.horizontal(
-                            left: Radius.circular(20.0),
-                            right: Radius.circular(20.0),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Search Here ...',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 55, 37, 37),
-                                fontSize: 15,
-                              ),
+                GestureDetector(
+                  onTap: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SearchPage())),
+                  },
+                  child: Center(
+                    child: Container(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.90,
+                          height: MediaQuery.of(context).size.width * 0.10,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.horizontal(
+                              left: Radius.circular(20.0),
+                              right: Radius.circular(20.0),
                             ),
-                          ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Search Here ...',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 55, 37, 37),
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

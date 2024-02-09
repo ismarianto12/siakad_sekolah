@@ -1,3 +1,4 @@
+import 'package:absensi_siswa/pages/Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:absensi_siswa/pages/Dashboard.dart';
 
@@ -16,7 +17,7 @@ class _NavigateState extends State<Navigate> {
     Dashboard(),
     Dashboard(),
     Dashboard(),
-    Dashboard(),
+    Profil(),
   ];
 
   @override
