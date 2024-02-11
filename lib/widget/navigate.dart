@@ -24,86 +24,91 @@ class _NavigateState extends State<Navigate> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Color.fromARGB(255, 23, 23, 23),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: screens[index_color],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Dashboard()));
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Color(0xff368983),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        height: MediaQuery.of(context).size.height * 0.09,
-        color: Color.fromARGB(255, 223, 172, 6),
+        height: MediaQuery.of(context).size.height * 0.06,
+        color: Color.fromARGB(255, 10, 172, 107),
         shape: CircularNotchedRectangle(),
         child: Container(
-          height:
-              kToolbarHeight, // Set ukuran tinggi BottomAppBar sesuai dengan kToolbarHeight
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    index_color = 0;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: index_color == 0
-                          ? BorderSide(
-                              color: Colors
-                                  .red, // Set the color of the bottom border
-                              width: 2.0, // Set the width of the bottom border
-                            )
-                          : BorderSide(
-                              color: Colors
-                                  .transparent, // Set the color of the bottom border
-                              width: 2.0, // Set the width of the bottom border
-                            ),
+          height: MediaQuery.sizeOf(context).height * 0.3,
+          width: MediaQuery.sizeOf(context).width,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      index_color = 0;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: index_color == 0
+                            ? BorderSide(
+                                color: Colors
+                                    .white, // Set the color of the bottom border
+                                width:
+                                    2.0, // Set the width of the bottom border
+                              )
+                            : BorderSide(
+                                color: Colors
+                                    .transparent, // Set the color of the bottom border
+                                width:
+                                    2.0, // Set the width of the bottom border
+                              ),
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    children: [
-                      Icon(
-                        UniconsLine.estate,
-                        size: 25,
-                        color:
-                            index_color == 0 ? Colors.white : Colors.green[100],
-                      ),
-                      Text(
-                        "Home",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 11.0,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 4,
                         ),
-                      ),
-                    ],
+                        Icon(
+                          UniconsLine.estate,
+                          size: 19,
+                          color: index_color == 0
+                              ? Colors.white
+                              : Colors.green[100],
+                        ),
+                        Text(
+                          "Home",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 10.0,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    index_color = 2;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: index_color == 2
-                          ? BorderSide(
-                              color: Colors
-                                  .red, // Set the color of the bottom border
-                              width: 2.0, // Set the width of the bottom border
-                            )
-                          : BorderSide(
-                              color: const Color.fromARGB(0, 255, 255,
-                                  255), // Set the color of the bottom border
-                              width: 2.0, // Set the width of the bottom border
-                            ),
-                    ),
-                  ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      index_color = 2;
+                    });
+                  },
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      SizedBox(
+                        height: 4,
+                      ),
                       Icon(
                         UniconsLine.list_ui_alt,
-                        size: 25,
+                        size: 19,
                         color:
                             index_color == 2 ? Colors.white : Colors.green[100],
                       ),
@@ -117,49 +122,55 @@ class _NavigateState extends State<Navigate> {
                     ],
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    index_color = 3;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: index_color == 3
-                          ? BorderSide(
-                              color: Colors
-                                  .white, // Set the color of the bottom border
-                              width: 2.0, // Set the width of the bottom border
-                            )
-                          : BorderSide(
-                              color: Colors
-                                  .transparent, // Set the color of the bottom border
-                              width: 2.0, // Set the width of the bottom border
-                            ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      index_color = 3;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: index_color == 3
+                            ? BorderSide(
+                                color: Colors
+                                    .white, // Set the color of the bottom border
+                                width:
+                                    2.0, // Set the width of the bottom border
+                              )
+                            : BorderSide(
+                                color: Colors
+                                    .transparent, // Set the color of the bottom border
+                                width:
+                                    2.0, // Set the width of the bottom border
+                              ),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Icon(
+                          UniconsLine.user,
+                          size: 19,
+                          color: index_color == 3
+                              ? const Color.fromARGB(255, 255, 255, 255)
+                              : const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                        Text(
+                          "Profile",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 11.0,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  child: Column(
-                    children: [
-                      Icon(
-                        UniconsLine.user,
-                        size: 25,
-                        color:
-                            index_color == 3 ? Colors.green : Colors.green[100],
-                      ),
-                      Text(
-                        "Profile",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 11.0,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
