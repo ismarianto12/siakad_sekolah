@@ -1,72 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
-class Profil extends StatefulWidget {
-  const Profil({super.key});
+class MapelForm extends StatefulWidget {
+  const MapelForm({super.key});
+
   @override
-  State<Profil> createState() => _ProfilState();
+  State<MapelForm> createState() => _MapelFormState();
 }
 
-class _ProfilState extends State<Profil> {
+class _MapelFormState extends State<MapelForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width,
-                height: MediaQuery.sizeOf(context).width * 0.45,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    colors: [
-                      Color.fromARGB(255, 230, 192, 0)!,
-                      const Color.fromARGB(255, 38, 255, 85)!,
-                      const Color.fromARGB(255, 38, 255, 85)!,
-                      // Color.fromARGB(255, 255, 255, 255)!,
-                      // Color.fromARGB(255, 255, 255, 255)!,
-                    ],
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            children: [
-                              Icon(UniconsLine.user_check,
-                                  size: 25, color: Colors.white),
-                              Text(
-                                'Edit Password',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            'Raen',
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ),
-                        ],
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Icon(UniconsLine.user_check,
+                                size: 25,
+                                color: const Color.fromARGB(255, 0, 0, 0)),
+                            Text(
+                              'Tambah Data Kelas',
+                              style: TextStyle(
+                                  color: const Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     TextFormField(
                       // controller: _controller,
@@ -152,6 +135,52 @@ class _ProfilState extends State<Profil> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/dashboard');
+                },
+                child: Container(
+                  height: MediaQuery.sizeOf(context).height * 0.05,
+                  width: MediaQuery.sizeOf(context).width,
+                  margin: EdgeInsets.symmetric(horizontal: 50),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 38, 204, 255),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Save",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/dashboard');
+                },
+                child: Container(
+                  height: MediaQuery.sizeOf(context).height * 0.05,
+                  width: MediaQuery.sizeOf(context).width,
+                  margin: EdgeInsets.symmetric(horizontal: 50),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 255, 212, 38),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Reset",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),

@@ -53,16 +53,39 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: 50,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
+            child: TextFormField(
               focusNode: searchFocusNode,
               onChanged: (value) {
                 filterData(value);
               },
+              // controller: _controller,
               decoration: InputDecoration(
-                hintText: 'Search...',
+                isDense: true,
+                labelText: 'Cari Siswa',
+                hintText: 'Masukkan nama Anda',
+                prefixIcon: Icon(Icons.person),
+                // suffixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.blue,
+              ),
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Nama tidak boleh kosong';
+                }
+                return null;
+              },
             ),
           ),
           Expanded(
