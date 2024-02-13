@@ -94,6 +94,40 @@ class _NavigateState extends State<Navigate> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      index_color = 2;
+                    });
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Icon(
+                        UniconsLine.document_info,
+                        size: 19,
+                        color:
+                            index_color == 2 ? Colors.white : Colors.green[100],
+                      ),
+                      Text(
+                        "Rerport",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 11.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
                 GestureDetector(
                   onTap: () {
                     setState(() {

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: false,
+        // useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -99,14 +99,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       topRight: Radius.circular(60),
                     ),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 65,
-                        ),
-                        Container(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 65,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
                               color: Colors.white,
@@ -153,34 +153,42 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 40),
-                        Text(
-                          'Forgot Password',
-                          style: TextStyle(color: Colors.grey, fontSize: 20),
-                        ),
-                        SizedBox(height: 20),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/dashboard');
-                          },
-                          child: Container(
-                            height: 50,
-                            margin: EdgeInsets.symmetric(horizontal: 50),
-                            decoration: BoxDecoration(
-                              color: Colors.orange[400],
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
+                      ),
+                      SizedBox(height: 40),
+                      Text(
+                        'Forgot Password',
+                        style: TextStyle(color: Colors.grey, fontSize: 20),
+                      ),
+                      SizedBox(height: 120),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/dashboard');
+                        },
+                        child: Container(
+                          height: MediaQuery.sizeOf(context).height * 0.05,
+                          width: MediaQuery.sizeOf(context).width * 0.80,
+                          // margin: EdgeInsets.symmetric(horizontal: 50),
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 99, 99, 99),
+                                blurRadius: 15,
+                                offset: Offset(2, 10),
+                              )
+                            ],
+                            color: Colors.orange[400],
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Login",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),

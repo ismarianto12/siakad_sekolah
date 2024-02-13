@@ -7,11 +7,15 @@ import 'package:absensi_siswa/widget/navigate.dart';
 import 'package:flutter/material.dart';
 import 'package:absensi_siswa/pages/Siswa.dart';
 
+import '../main.dart';
 import '../pages/LaporanSiswa.dart';
+import '../pages/guru.dart';
 
 class AppRoute {
   static MaterialPageRoute generateRoute(RouteSettings setting) {
     switch (setting.name) {
+      case '/':
+        return MaterialPageRoute(builder: (_) => MyApp());
       case '/dashboard':
         return MaterialPageRoute(builder: (_) => Navigate());
       case '/siswa':
@@ -22,6 +26,8 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => Mapel());
       case '/kelas':
         return MaterialPageRoute(builder: (_) => Kelas());
+      case '/guru':
+        return MaterialPageRoute(builder: (_) => Guru());
       case '/laporan_siswa':
         return MaterialPageRoute(builder: (_) => LaporanSiswa());
       default:

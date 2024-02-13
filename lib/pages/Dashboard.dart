@@ -55,6 +55,39 @@ class _DashboardState extends State<Dashboard> {
         icon: UniconsLine.angle_double_left,
         colors: Colors.red),
   ];
+  _logoutApps(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              Icon(Icons.info),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Konfirmasi'),
+            ],
+          ),
+          content: Text('Yakin logout dari aplikasi'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Dismiss the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/'); // Dismiss the dialog
+              },
+              child: Text('Confirm'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,29 +130,34 @@ class _DashboardState extends State<Dashboard> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            height: 40,
-                          ),
-                          SizedBox(
-                            width: 120,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Logout',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
-                              ),
-                              Icon(UniconsLine.sign_out_alt,
-                                  size: 29, color: Colors.white),
-                            ],
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: () {
+                        _logoutApps(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              height: 40,
+                            ),
+                            SizedBox(
+                              width: 170,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Logout',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15),
+                                ),
+                                Icon(UniconsLine.sign_out_alt,
+                                    size: 29, color: Colors.white),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -164,6 +202,14 @@ class _DashboardState extends State<Dashboard> {
                           width: MediaQuery.of(context).size.width * 0.90,
                           height: MediaQuery.of(context).size.width * 0.10,
                           decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 99, 99, 99),
+                                blurRadius: 15,
+                                spreadRadius: -5,
+                                offset: Offset(2, 10),
+                              )
+                            ],
                             color: Colors.white,
                             borderRadius: BorderRadius.horizontal(
                               left: Radius.circular(20.0),
@@ -197,6 +243,15 @@ class _DashboardState extends State<Dashboard> {
                     width: MediaQuery.sizeOf(context).width,
                     height: MediaQuery.sizeOf(context).height * 0.56,
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 99, 99, 99),
+                          blurRadius: 15,
+                          spreadRadius:
+                              -5, // Use a negative value to create an inner shadow
+                          offset: Offset(2, 10),
+                        ),
+                      ],
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(60),
@@ -259,11 +314,19 @@ class _DashboardState extends State<Dashboard> {
                                         Container(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
-                                              0.05,
+                                              0.06,
                                           width:
                                               MediaQuery.sizeOf(context).width *
-                                                  0.10,
+                                                  0.12,
                                           decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 192, 192, 192),
+                                                blurRadius: 15,
+                                                offset: Offset(4, 10),
+                                              )
+                                            ],
                                             color: menus[index].colors!,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(100),
@@ -320,15 +383,19 @@ class _DashboardState extends State<Dashboard> {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                // verticalDirection: VerticalDirection.,
                                 children: <Widget>[
-                                  Image.network(
-                                      "https://images.tokopedia.net/img/cache/1208/NsjrJu/2024/1/30/2dc5ca3c-68af-424a-947f-1fd8e9e7542e.jpg.webp?ect=4g"),
-                                  SizedBox(
-                                    height: 10,
+                                  Card(
+                                    child: Image.network(
+                                        "https://images.tokopedia.net/img/cache/1208/NsjrJu/2024/1/30/2dc5ca3c-68af-424a-947f-1fd8e9e7542e.jpg.webp?ect=4g"),
                                   ),
-                                  Image.network(
-                                      "https://images.tokopedia.net/img/cache/1208/NsjrJu/2024/1/30/2dc5ca3c-68af-424a-947f-1fd8e9e7542e.jpg.webp?ect=4g")
+                                  Card(
+                                    child: Image.network(
+                                        "https://images.tokopedia.net/img/cache/1208/NsjrJu/2024/1/30/2dc5ca3c-68af-424a-947f-1fd8e9e7542e.jpg.webp?ect=4g"),
+                                  ),
+                                  Card(
+                                    child: Image.network(
+                                        "https://images.tokopedia.net/img/cache/1208/NsjrJu/2024/1/30/2dc5ca3c-68af-424a-947f-1fd8e9e7542e.jpg.webp?ect=4g"),
+                                  )
                                 ],
                               ),
                             ),
