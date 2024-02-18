@@ -1,18 +1,18 @@
+import 'package:absensi_siswa/pages/ScanAbsen.dart';
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
-import '../widget/GuruForm.dart';
 import '../widget/MapelForm.dart';
 import '../widget/ruangan.dart';
 
-class Guru extends StatefulWidget {
-  const Guru({super.key});
-
+class Success extends StatefulWidget {
+  final String name;
+  const Success({Key? key, required this.name}) : super(key: key);
   @override
-  State<Guru> createState() => _GuruState();
+  State<Success> createState() => _SuccessState();
 }
 
-class _GuruState extends State<Guru> {
+class _SuccessState extends State<Success> {
   late FocusNode searchFocusNode;
   bool isAscending = true;
   int index_color = 1;
@@ -53,7 +53,7 @@ class _GuruState extends State<Guru> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 5,
+              height: 25,
             ),
             GestureDetector(
               onTap: () {
@@ -75,7 +75,7 @@ class _GuruState extends State<Guru> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Container(
               width: MediaQuery.sizeOf(context).width * 0.90,
@@ -143,7 +143,6 @@ class _GuruState extends State<Guru> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          // Toggle antara ascending dan descending
                           // print(index_color);
                           index_color = 2;
                           // isAscending = !isAscending;
@@ -173,7 +172,7 @@ class _GuruState extends State<Guru> {
                               width: 10,
                             ),
                             Text(
-                              'Tambah Data',
+                              'Daftar Hadir',
                               style: TextStyle(
                                   color: index_color == 2
                                       ? const Color.fromARGB(255, 255, 255, 255)
@@ -196,7 +195,6 @@ class _GuruState extends State<Guru> {
                 width: MediaQuery.sizeOf(context).width,
                 height: MediaQuery.sizeOf(context).height * 20,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 255, 255, 255),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 255, 255, 255),
@@ -204,12 +202,22 @@ class _GuruState extends State<Guru> {
                       offset: Offset(2, 10),
                     )
                   ],
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    colors: [
+                      const Color.fromARGB(255, 255, 255, 255)!,
+                      const Color.fromARGB(255, 255, 255, 215)!,
+                      const Color.fromARGB(255, 255, 255, 255)!,
+                    ],
+                  ),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(50),
                       topRight: Radius.circular(50)),
                 ),
                 child: index_color == 2
-                    ? GuruForm()
+                    ? Container(
+                        child: Text("empti"),
+                      )
                     : Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -219,7 +227,17 @@ class _GuruState extends State<Guru> {
                                 width: MediaQuery.sizeOf(context).width * 0.90,
                                 height:
                                     MediaQuery.sizeOf(context).height * 0.20,
-                                child: Ruangan()),
+                                child: Column(
+                                  children: [
+                                    Icon(UniconsLine.check_circle),
+                                    Text(
+                                      "Presensi Berhasil",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 25),
+                                    ),
+                                    Text(widget.name),
+                                  ],
+                                )),
                           ),
                           SizedBox(
                             height: 10,
@@ -243,11 +261,16 @@ class _GuruState extends State<Guru> {
                                 color: Color.fromARGB(255, 38, 204, 255),
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              child: Center(
-                                child: Text(
-                                  "Cari Data",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/absen');
+                                },
+                                child: Center(
+                                  child: Text(
+                                    "Scan Lagi",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
                                 ),
                               ),
                             ),

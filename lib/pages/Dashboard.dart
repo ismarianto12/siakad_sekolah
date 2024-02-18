@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:absensi_siswa/pages/Profile.dart';
 import 'package:absensi_siswa/pages/Searh.dart';
 import 'package:flutter/material.dart';
 import 'package:absensi_siswa/models/Menu.dart';
 import 'package:flutter/rendering.dart';
 import 'package:unicons/unicons.dart';
+// import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -55,6 +58,32 @@ class _DashboardState extends State<Dashboard> {
         icon: UniconsLine.angle_double_left,
         colors: Colors.red),
   ];
+
+  ScrollController _scrollController = ScrollController();
+  double scrollValue = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    startAutoScroll();
+  }
+
+  void startAutoScroll() {
+    const double scrollSpeed = 0.5; // Adjust the speed as needed
+    // Periodic timer to scroll the content
+    Timer.periodic(Duration(milliseconds: 5), (timer) {
+      scrollValue += scrollSpeed;
+      if (scrollValue > _scrollController.position.maxScrollExtent) {
+        scrollValue = 0;
+      }
+      _scrollController.animateTo(
+        scrollValue,
+        duration: Duration(milliseconds: 5),
+        curve: Curves.linear,
+      );
+    });
+  }
+
   _logoutApps(BuildContext context) {
     showDialog(
       context: context,
@@ -71,18 +100,73 @@ class _DashboardState extends State<Dashboard> {
           ),
           content: Text('Yakin logout dari aplikasi'),
           actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Dismiss the dialog
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/'); // Dismiss the dialog
-              },
-              child: Text('Confirm'),
-            ),
+            Row(
+              children: [
+                Container(
+                  height: MediaQuery.sizeOf(context).height * 0.03,
+                  width: MediaQuery.sizeOf(context).width * 0.30,
+                  // margin: EdgeInsets.symmetric(horizontal: 50),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 99, 99, 99),
+                        blurRadius: 15,
+                        offset: Offset(2, 10),
+                      )
+                    ],
+                    color: Colors.orange[400],
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Logout",
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/'); // Dismiss the dialog
+                  },
+                  child: Container(
+                    height: MediaQuery.sizeOf(context).height * 0.03,
+                    width: MediaQuery.sizeOf(context).width * 0.30,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 99, 99, 99),
+                          blurRadius: 15,
+                          offset: Offset(2, 10),
+                        )
+                      ],
+                      color: const Color.fromARGB(255, 255, 38, 38),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Logout",
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+            // TextButton(
+            //   onPressed: () {
+            //     Navigator.of(context).pop(); // Dismiss the dialog
+            //   },
+            //   child: Text('Cancel'),
+            // ),
+            // TextButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/'); // Dismiss the dialog
+            //   },
+            //   child: Text('Confirm'),
+            // ),
           ],
         );
       },
@@ -379,6 +463,7 @@ class _DashboardState extends State<Dashboard> {
                             height: MediaQuery.sizeOf(context).width * 0.20,
                             width: MediaQuery.sizeOf(context).width,
                             child: SingleChildScrollView(
+                              controller: _scrollController,
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 mainAxisAlignment:
@@ -407,5 +492,11 @@ class _DashboardState extends State<Dashboard> {
             )),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    // super.dispose();
   }
 }

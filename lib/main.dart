@@ -143,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ),
                                 child: TextField(
+                                  keyboardType: TextInputType.visiblePassword,
                                   decoration: InputDecoration(
                                     hintText: "Password",
                                     hintStyle: TextStyle(color: Colors.grey),

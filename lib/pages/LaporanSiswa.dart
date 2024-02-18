@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
+import 'package:intl/intl.dart';
 
 import '../widget/ruangan.dart';
 
@@ -12,6 +13,8 @@ class LaporanSiswa extends StatefulWidget {
 
 class _LaporanSiswaState extends State<LaporanSiswa> {
   late FocusNode searchFocusNode;
+  TextEditingController _dariController = TextEditingController();
+  TextEditingController _sampaiController = TextEditingController();
 
   @override
   void initState() {
@@ -76,13 +79,25 @@ class _LaporanSiswaState extends State<LaporanSiswa> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                focusNode: searchFocusNode,
-                onChanged: (value) {
-                  // filterData(value);
+                controller: _dariController,
+                // focusNode: searchFocusNode,
+                onTap: () async {
+                  await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2015),
+                    lastDate: DateTime(2026),
+                  ).then((selectedDate) {
+                    if (selectedDate != null) {
+                      _dariController.text =
+                          DateFormat('yyyy-MM-dd').format(selectedDate);
+                    }
+                  });
                 },
                 // controller: _controller,
                 decoration: InputDecoration(
                   fillColor: Colors.white,
+                  focusColor: Colors.white,
                   isDense: true,
                   labelText: 'Dari',
                   hintText: '',
@@ -102,7 +117,7 @@ class _LaporanSiswaState extends State<LaporanSiswa> {
                 textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Nama tidak boleh kosong';
+                    return 'Dari tidak boleh kosong';
                   }
                   return null;
                 },
@@ -111,12 +126,25 @@ class _LaporanSiswaState extends State<LaporanSiswa> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
-                focusNode: searchFocusNode,
-                onChanged: (value) {
-                  // filterData(value);
+                keyboardType: TextInputType.datetime,
+                controller: _sampaiController,
+                // focusNode: searchFocusNode,
+                onTap: () async {
+                  await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2015),
+                    lastDate: DateTime(2026),
+                  ).then((selectedDate) {
+                    if (selectedDate != null) {
+                      _sampaiController.text =
+                          DateFormat('yyyy-MM-dd').format(selectedDate);
+                    }
+                  });
                 },
                 // controller: _controller,
                 decoration: InputDecoration(
+                  focusColor: Colors.white,
                   isDense: true,
                   labelText: 'Sampai',
                   hintText: '',
@@ -131,11 +159,10 @@ class _LaporanSiswaState extends State<LaporanSiswa> {
                   fontSize: 16.0,
                   color: const Color.fromARGB(255, 255, 255, 255),
                 ),
-                keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Nama tidak boleh kosong';
+                    return 'Sampai tidak boleh kosong';
                   }
                   return null;
                 },

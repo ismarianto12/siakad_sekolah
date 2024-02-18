@@ -26,7 +26,7 @@ class _MapelFormState extends State<MapelForm> {
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
-                        SizedBox(height: 10),
+                        SizedBox(height: 50),
                         Row(
                           children: [
                             Icon(UniconsLine.user_check,

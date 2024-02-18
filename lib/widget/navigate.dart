@@ -1,4 +1,5 @@
 import 'package:absensi_siswa/pages/Profile.dart';
+import 'package:absensi_siswa/pages/ScanAbsen.dart';
 import 'package:flutter/material.dart';
 import 'package:absensi_siswa/pages/Dashboard.dart';
 
@@ -15,8 +16,8 @@ class _NavigateState extends State<Navigate> {
   int index_color = 0;
   List<Widget> screens = [
     Dashboard(),
-    Dashboard(),
-    Dashboard(),
+    ScanAbsen(),
+    ScanAbsen(),
     Profil(),
   ];
 
@@ -29,9 +30,9 @@ class _NavigateState extends State<Navigate> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Dashboard()));
+              .push(MaterialPageRoute(builder: (context) => ScanAbsen()));
         },
-        child: Icon(Icons.add),
+        child: Icon(UniconsLine.qrcode_scan),
         backgroundColor: Color(0xff368983),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
