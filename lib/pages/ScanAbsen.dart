@@ -112,9 +112,7 @@ class _ScanAbsenState extends State<ScanAbsen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Container(
-              height: MediaQuery.sizeOf(context).height * 0.55,
-              child: Expanded(flex: 1, child: _buildQrView(context))),
+          Flexible(flex: 1, child: _buildQrView(context)),
           Expanded(
             flex: 1,
             child: Column(
@@ -329,6 +327,8 @@ class _ScanAbsenState extends State<ScanAbsen> {
   }
 
   Widget _buildQrView(BuildContext context) {
+    resizeToAvoidBottomInset:
+    false;
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
@@ -360,7 +360,6 @@ class _ScanAbsenState extends State<ScanAbsen> {
   }
 
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
-    log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
     if (!p) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('no Permission')),

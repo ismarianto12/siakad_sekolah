@@ -1,5 +1,6 @@
 import 'package:absensi_siswa/pages/Dashboard.dart';
 import 'package:absensi_siswa/pages/Profile.dart';
+import 'package:absensi_siswa/pages/detailAbsen.dart';
 import 'package:absensi_siswa/pages/error_page.dart';
 import 'package:absensi_siswa/pages/kelas.dart';
 import 'package:absensi_siswa/pages/mapel.dart';
@@ -26,6 +27,11 @@ class AppRoute {
       case '/mapel':
         return MyCustomRoute(
           builder: (context) => Mapel(),
+          settings: setting,
+        );
+      case '/absendetail':
+        return MyCustomRoute(
+          builder: (context) => DetailAbsen(),
           settings: setting,
         );
       case '/absen':

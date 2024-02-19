@@ -39,7 +39,7 @@ class _DashboardState extends State<Dashboard> {
         colors: Colors.greenAccent),
     Menu(
         title: "Data mm",
-        url: "/as",
+        url: "/absendetail",
         icon: Icons.verified_user_sharp,
         colors: Colors.green),
     Menu(
