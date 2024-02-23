@@ -1,5 +1,6 @@
 import 'package:absensi_siswa/pages/Dashboard.dart';
 import 'package:absensi_siswa/pages/Profile.dart';
+import 'package:absensi_siswa/pages/RaportSiswa.dart';
 import 'package:absensi_siswa/pages/detailAbsen.dart';
 import 'package:absensi_siswa/pages/error_page.dart';
 import 'package:absensi_siswa/pages/kelas.dart';
@@ -19,11 +20,26 @@ class AppRoute {
       case '/':
         return MaterialPageRoute(builder: (_) => MyApp());
       case '/dashboard':
-        return MaterialPageRoute(builder: (_) => Navigate());
+        return MyCustomRoute(
+          builder: (context) => Navigate(),
+          settings: setting,
+        );
+      case '/raportsiswa':
+        return MyCustomRoute(
+          builder: (context) => RaportSiswa(),
+          settings: setting,
+        );
       case '/siswa':
-        return MaterialPageRoute(builder: (_) => Siswa());
+        // return MaterialPageRoute(builder: (_) => Siswa());
+        return MyCustomRoute(
+          builder: (context) => Siswa(),
+          settings: setting,
+        );
       case '/profil':
-        return MaterialPageRoute(builder: (_) => Profil());
+        return MyCustomRoute(
+          builder: (context) => Profil(),
+          settings: setting,
+        );
       case '/mapel':
         return MyCustomRoute(
           builder: (context) => Mapel(),
@@ -51,9 +67,15 @@ class AppRoute {
           settings: setting,
         );
       case '/laporan_siswa':
-        return MaterialPageRoute(builder: (_) => LaporanSiswa());
+        return MyCustomRoute(
+          builder: (context) => LaporanSiswa(),
+          settings: setting,
+        );
       default:
-        return MaterialPageRoute(builder: (_) => Error_page());
+        return MyCustomRoute(
+          builder: (context) => Error_page(),
+          settings: setting,
+        );
     }
   }
 }

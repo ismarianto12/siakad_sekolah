@@ -12,10 +12,17 @@ class DetailAbsen extends StatefulWidget {
 class _DetailAbsenState extends State<DetailAbsen> {
   late FocusNode searchFocusNode;
   int acivebutton = 1;
+  int statlistitle = 0;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  void activeBtnAction(int param) {
+    setState(() {
+      acivebutton = param;
+    });
   }
 
   @override
@@ -25,50 +32,77 @@ class _DetailAbsenState extends State<DetailAbsen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(14.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Header(context),
-                SearchBar(context),
-                Padding(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Header(context),
+              SearchBar(context),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Category(context, activeBtnAction, acivebutton),
+              ),
+              SizedBox(
+                height: 2,
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Category(context, setState, acivebutton),
-                ),
-                SizedBox(
-                  height: 28,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Listile(context),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Listile(context),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Listile(context),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Listile(context),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CourseList(context),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                statlistitle = 1;
+                              });
+                            },
+                            child: Listile(context, statlistitle, 1)),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                statlistitle = 2;
+                              });
+                            },
+                            child: Listile(context, statlistitle, 2)),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                statlistitle = 3;
+                              });
+                            },
+                            child: Listile(context, statlistitle, 3)),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                statlistitle = 4;
+                              });
+                            },
+                            child: Listile(context, statlistitle, 4)),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CourseList(context),
+                      ],
+                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -174,94 +208,146 @@ Widget SearchBar(BuildContext context) {
   );
 }
 
-Widget ButtonCat(BuildContext context, label, active, setState, acivebutton) {
-  return GestureDetector(
-    onTap: () {
-      print(acivebutton.toString() + "adsa");
-      setState(() {
-        acivebutton = active;
-      });
-    },
-    child: Container(
-      width: MediaQuery.sizeOf(context).width * 0.2,
-      decoration: BoxDecoration(
-        color: active == acivebutton ? Colors.blueAccent : Colors.white,
-        border: Border.all(color: Colors.blueAccent),
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
+Widget ButtonCat(BuildContext context, label, int active, acivebutton) {
+  return Container(
+    width: MediaQuery.sizeOf(context).width * 0.2,
+    decoration: BoxDecoration(
+      color: acivebutton == active ? Colors.blueAccent : Colors.white,
+      border: Border.all(
+        color: acivebutton == active
+            ? Colors.blueAccent
+            : Color.fromARGB(255, 239, 239, 3),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(color: active == 1 ? Colors.white : Colors.black),
-          ),
+      borderRadius: BorderRadius.all(
+        Radius.circular(10),
+      ),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Text(
+          label,
+          style: TextStyle(
+              color: acivebutton == active
+                  ? const Color.fromARGB(255, 255, 255, 255)
+                  : const Color.fromARGB(255, 0, 0, 0)),
         ),
       ),
     ),
   );
 }
 
-Widget Listile(context) {
+String _renderCat(int cat) {
+  switch (cat) {
+    case 1:
+      return "Hadir";
+    case 2:
+      return "Apha";
+    case 3:
+      return "Izin";
+    case 4:
+      return "Tanpa Keterangan";
+    default:
+      return "Tanpa Keterangan";
+  }
+}
+
+Widget Listile(BuildContext context, statlistitle, urutan) {
   return Container(
     decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: Color.fromARGB(255, 200, 200, 200),
-          blurRadius: 15,
-          offset: Offset(2, 10),
-        )
-      ],
+      // boxShadow: [
+      //   BoxShadow(
+      //     color: Color.fromARGB(255, 200, 200, 200),
+      //     blurRadius: 15,
+      //     offset: Offset(10, 10),
+      //   )
+      // ],
       color: Color.fromARGB(255, 141, 218, 246),
       borderRadius: BorderRadius.all(Radius.circular(10)),
     ),
     child: Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: [
-          Text(
-            'Hadir',
-            style: TextStyle(color: Colors.white, fontSize: 18.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Hadir',
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
+              Divider(
+                color: Colors.green,
+              ),
+              Icon(urutan == statlistitle ? Icons.minimize : Icons.add,
+                  color: Colors.white),
+            ],
           ),
-          Icon(Icons.add, color: Colors.white)
+          urutan == statlistitle
+              ? Container(
+                  margin: EdgeInsets.only(right: 40),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'Detail Catatan : Yes, Flutter is better than React Native, but only in certain aspects. For instance, Flutter applications offer better performance, have little compatibility issues, and are easy to develop. Nonetheless, there are several other aspects and conditions one needs to consider before making a pick',
+                        style: TextStyle(color: Colors.white, fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                )
+              : Container(),
         ],
       ),
     ),
   );
 }
 
-Widget Category(BuildContext context, setState, acivebutton) {
+Widget Category(BuildContext context, activeBtnAction, acivebutton) {
   return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          "Categori :",
+          "Status Absensi :${_renderCat(acivebutton)}",
           style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
         ),
         SizedBox(
-          height: 28,
+          height: 10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ButtonCat(context, "Hadir", 1, setState, acivebutton),
+            GestureDetector(
+                onTap: () {
+                  activeBtnAction(1);
+                },
+                child: ButtonCat(context, "Hadir", 1, acivebutton)),
             SizedBox(
               width: 5,
             ),
-            ButtonCat(context, "Alpha", 3, setState, acivebutton),
+            GestureDetector(
+                onTap: () {
+                  activeBtnAction(2);
+                },
+                child: ButtonCat(context, "Alpha", 2, acivebutton)),
             SizedBox(
               width: 5,
             ),
-            ButtonCat(context, "Alpha", 3, setState, acivebutton),
+            GestureDetector(
+                onTap: () {
+                  activeBtnAction(3);
+                },
+                child: ButtonCat(context, "Alpha", 3, acivebutton)),
             SizedBox(
               width: 5,
             ),
-            ButtonCat(context, "Izin", 4, setState, acivebutton),
+            GestureDetector(
+                onTap: () {
+                  activeBtnAction(4);
+                },
+                child: ButtonCat(context, "Izin", 4, acivebutton)),
           ],
         ),
       ]);

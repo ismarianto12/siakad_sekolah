@@ -16,7 +16,7 @@ class MyCustomRoute<T> extends MaterialPageRoute<T> {
     // Check if the current route is the initial route
     if (settings.name == '/') return child;
     // Create a slide animation from the right
-    const begin = Offset(1.0, 0.0);
+    const begin = Offset(0.0, 1.0);
     const end = Offset.zero;
     var tween = Tween(begin: begin, end: end);
 

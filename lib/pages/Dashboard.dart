@@ -34,7 +34,7 @@ class _DashboardState extends State<Dashboard> {
         colors: Colors.red),
     Menu(
         title: "Data N",
-        url: "/ss",
+        url: "/raportsiswa",
         icon: UniconsLine.graduation_cap,
         colors: Colors.greenAccent),
     Menu(
@@ -272,7 +272,6 @@ class _DashboardState extends State<Dashboard> {
                 //     ),
                 //   ),
                 // ),
-
                 GestureDetector(
                   onTap: () => {
                     Navigator.push(context,
